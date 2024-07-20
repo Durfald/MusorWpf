@@ -1,0 +1,528 @@
+﻿<Window x:Class="MusorWpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        MouseDown="Window_MouseDown"
+        Title="MMM" 
+        Height="584 px" 
+        Closed="Window_Closed"
+        Width="780 px" 
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        Loaded="Window_Loaded"
+        >
+    <Window.Resources>
+        <Style x:Key="TextBoxStyle1" BasedOn="{x:Null}" TargetType="{x:Type TextBox}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border CornerRadius="2" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                            <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid >
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="138 px"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="230 px"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="Right_Grid" Grid.RowSpan="2" Grid.Column="1">
+            <Grid.Background>
+                <SolidColorBrush>#181818</SolidColorBrush>
+            </Grid.Background>
+            <ComboBox x:Name="ComboBox_FindGifter"
+                      SelectionChanged="ComboBox_FindGifter_SelectionChanged"
+                      HorizontalAlignment="Left"
+                      Width="173 px" 
+                      Height="29 px"
+                      Margin="22,90,0,0"
+                      VerticalAlignment="Top"
+                      Style="{StaticResource CustomCombobox}" 
+                      Foreground="#717171"
+                      FontSize="14">
+            </ComboBox>
+            <DataGrid x:Name="DataGrid" Margin="22,158,22,22" ScrollViewer.VerticalScrollBarVisibility="Hidden" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" IsReadOnly="True" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nickname" Width="*" Binding="{Binding Nickname}" />
+                    <DataGridTextColumn Header="Gifter" Width="*" Binding="{Binding NicknameSended}" />
+                    <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=\{0:yyyy.MM.dd HH:mm\}}"  Width="*" />
+                    <DataGridTextColumn Header="Code" Width="*" Binding="{Binding code}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Line Stroke="#454545" X1="0" X2="800" Y1="137" Y2="137"/>
+            <Border x:Name="Border_FindNickname" VerticalAlignment="Top" Margin="22,51,355,0" Height="27 px" BorderThickness="1"  BorderBrush="#454545" Background="#1c1c1c" CornerRadius="5">
+                <TextBox x:Name="TextBox_FindNickname" FontSize="14" 
+                    Background="#1c1c1c" Foreground="#717171" 
+                    LostFocus="TextBox_FindNickname_LostFocus"
+                    GotFocus="TextBox_FindNickname_GotFocus" 
+                    MouseLeave="TextBox_FindNickname_MouseLeave"
+                    MouseEnter="TextBox_FindNickname_MouseEnter" 
+                    TextChanged="TextBox_FindNickname_TextChanged"
+                    BorderBrush="Transparent"
+                    Style="{StaticResource TextBoxStyle1}"/>
+            </Border>
+        </Grid>
+        <Grid x:Name="Grid_Left" Grid.RowSpan="2" Grid.Column="0">
+            <Grid.Background>
+                <SolidColorBrush x:Name="Grid_Left_SColorBrush" Color="#1c1c1c" Opacity="1"/>
+            </Grid.Background>
+            <Border BorderThickness="1" BorderBrush="#454545" Background="#1c1c1c"  Margin="22,158,22,22">
+                <ListBox x:Name="listbox"  Foreground="#717171"  Background="Transparent" BorderBrush="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" FontSize="11">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListBoxItem}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                        <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                                            Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="IsMouseOver" Value="True"/>
+                                                </MultiTrigger.Conditions>
+                                                <Setter Property="Background" TargetName="Bd" Value="Transparent"/>
+                                                <Setter Property="BorderBrush" TargetName="Bd" Value="Transparent"/>
+                                            </MultiTrigger>
+
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+            </Border>
+            <Border x:Name="Border_TextBox_Nickname" VerticalAlignment="Top" Width="186 px" Margin="0,14,0,0" Height="27 px" BorderThickness="1"  BorderBrush="#454545" Background="#1c1c1c" CornerRadius="5">
+                <TextBox x:Name="TextBox_Nickname" FontSize="14" 
+                         Background="Transparent" Foreground="#717171" 
+                         LostFocus="TextBox_Nickname_LostFocus"
+                         GotFocus="TextBox_Nickname_GotFocus" 
+                         MouseLeave="TextBox_Nickname_MouseLeave"
+                         MouseEnter="TextBox_Nickname_MouseEnter" 
+                         BorderBrush="Transparent" Text="Nickname" 
+                         Style="{StaticResource TextBoxStyle1}"/>
+            </Border>
+
+            <Border x:Name="GiftBorder" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="22,90,0,0" BorderThickness="1" Height="27 px" Width="78 px" BorderBrush="#454545" Background="#1c1c1c" CornerRadius="5">
+                <Button Margin="1" x:Name="GiftButton" PreviewMouseLeftButtonDown="GiftButton_MouseLeftButtonDown" Click="GiftButton_Click" PreviewMouseLeftButtonUp="GiftButton_MouseLeftButtonUp" MouseLeave="GiftButton_MouseLeave" MouseEnter="GiftButton_MouseEnter" Background="Transparent" BorderBrush="#1c1c1c" FontSize="14" Content="Gift" Foreground="#717171">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Border>
+            <Border x:Name="RefreshBorder" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,90,22,0" BorderThickness="1"  Height="27 px" Width="78 px" BorderBrush="#454545" Background="#1c1c1c" CornerRadius="5">
+                <Button Margin="1" x:Name="RefreshButton" PreviewMouseLeftButtonDown="RefreshButton_PreviewMouseLeftButtonDown" Click="RefreshButton_Click" PreviewMouseLeftButtonUp="RefreshButton_PreviewMouseLeftButtonUp" MouseLeave="RefreshButton_MouseLeave" MouseEnter="RefreshButton_MouseEnter" Background="Transparent" BorderBrush="Transparent" FontSize="14" Content="Refresh" Foreground="#717171">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Border>
+            <ComboBox Width="188 px"
+                      Height="29 px"
+                      VerticalAlignment="Top" 
+                      HorizontalAlignment="Center"
+                      x:Name="ComboBox_Product" 
+                      Style="{StaticResource CustomCombobox}" 
+                      Foreground="#717171" 
+                      Margin="0,50,0,0"
+                      FontSize="14">
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ComboBoxItem}">
+                        <Setter Property="Height" Value="23 px" />
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Label Content="wa"/>
+                </ComboBoxItem>
+                <ComboBoxItem >
+                    <Button x:Name="AddNewCode" Width="175 px" Click="AddNewCode_Click" Content="Add new code" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Foreground="#717171">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </ComboBoxItem>
+                <ComboBoxItem >
+                    <Button x:Name="DeleteCode" Width="175 px" Click="DeleteCode_Click" Content="Delete code" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Foreground="#717171">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </ComboBoxItem>
+            </ComboBox>
+            <Line Stroke="#454545" X1="229" X2="229" Y1="0" Y2="600"/>
+        </Grid>
+        <Button x:Name="Close_window_button" Background="Transparent" Foreground="#717171" BorderBrush="Transparent" Content="❌"  FontSize="14" Click="Close_window_Click" MouseEnter="Close_window_MouseEnter" MouseLeave="Close_window_button_MouseLeave" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button HorizontalAlignment="Right" x:Name="ButtonBlur" Content="OFF" Click="ButtonBlur_Click" MouseLeave="ButtonBlur_MouseLeave" MouseEnter="ButtonBlur_MouseEnter" Foreground="#717171" VerticalAlignment="Top" Margin="0,0,24,0" Background="Transparent"  Padding="-2" BorderBrush="Transparent" FontWeight="Medium" FontSize="14" Height="19" Width="28" Grid.Column="1" >
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button HorizontalAlignment="Right" x:Name="Settingbutton" Click="Settingbutton_Click" Content="🛠" Foreground="#717171" VerticalAlignment="Top" Margin="0,0,55,0" Background="Transparent"  Padding="-2" BorderBrush="Transparent" FontWeight="Medium" FontSize="14" Height="19" Width="28" Grid.Column="1" >
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Line Stroke="#454545" X1="0" X2="800" Y1="137" Y2="137"/>
+        <TextBlock x:Name="Date_TextBox" Grid.Column="1" Background="Transparent" Foreground="#717171" Margin="295,95,0,10" Width="auto" 
+                      Height="29 px"/>
+        <TextBlock x:Name="Balance_TextBox" Grid.Column="1" Background="Transparent" Foreground="#717171" Margin="295,63,0,46" Width="auto" 
+            Height="29 px"/>
+    </Grid>
+
+</Window>

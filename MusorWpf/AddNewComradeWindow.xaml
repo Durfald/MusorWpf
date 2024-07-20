@@ -1,0 +1,103 @@
+﻿<Window x:Class="MusorWpf.AddNewComradeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MusorWpf"
+        mc:Ignorable="d" 
+        WindowStyle="None"
+        Loaded="Window_Loaded"
+        MouseDown="Window_MouseDown"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Title="MMM" Height="150 px" Width="250 px">
+
+    <Window.Resources>
+        <Style x:Key="TextBoxStyle1" BasedOn="{x:Null}" TargetType="{x:Type TextBox}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border CornerRadius="2" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                            <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush>#181818</SolidColorBrush>
+        </Grid.Background>
+        <Border x:Name="Border_TextBox_Login" VerticalAlignment="Top" Width="173 px" Margin="38,32,38,0" Height="27 px" BorderThickness="1"  BorderBrush="#454545" Background="#1c1c1c" CornerRadius="5">
+            <TextBox x:Name="TextBox_Login" FontSize="14" 
+                         Background="#1c1c1c" Foreground="#717171"
+                         BorderBrush="Transparent" Text="Login" 
+                         MouseEnter="TextBox_Login_MouseEnter"
+                         MouseLeave="TextBox_Login_MouseLeave"
+                         GotFocus="TextBox_Login_GotFocus"
+                         LostFocus="TextBox_Login_LostFocus"
+                         Style="{StaticResource TextBoxStyle1}"/>
+        </Border>
+        
+        <Border x:Name="Border_TextBox_Password" VerticalAlignment="Top" HorizontalAlignment="Center" Width="174" Margin="0,68,0,0" Height="27 px" BorderThickness="1"  BorderBrush="#454545" Background="#1c1c1c" CornerRadius="5">
+            <TextBox x:Name="passbox"
+                         MouseLeave="TextBox_Password_MouseLeave"
+                         MouseEnter="TextBox_Password_MouseEnter"
+                         GotFocus="passbox_GotFocus"
+                         LostFocus="passbox_LostFocus"
+                         Background="#1c1c1c"
+                         Foreground="#717171"
+                         BorderBrush="Transparent"
+                         Text="Password"
+                         Style="{StaticResource TextBoxStyle1}"
+                />
+        </Border>
+
+        <Border x:Name="LoginBorder" VerticalAlignment="Bottom" Margin="0,0,0,15" HorizontalAlignment="Center"  BorderThickness="1" Height="27 px" Width="78 px" BorderBrush="#454545" Background="#1c1c1c" CornerRadius="5">
+            <Button Margin="1" x:Name="LoginButton" Background="Transparent" PreviewMouseLeftButtonDown="LoginButton_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="LoginButton_PreviewMouseLeftButtonUp" MouseLeave="LoginButton_MouseLeave" MouseEnter="LoginButton_MouseEnter" Click="LoginButton_Click" BorderBrush="#1c1c1c" FontSize="14" Content="Add" Foreground="#717171">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Border>
+        <Button x:Name="Close_window_button" Click="Close_window_button_Click" Background="Transparent" Foreground="#717171" BorderBrush="Transparent" MouseEnter="Close_window_button_MouseEnter" MouseLeave="Close_window_button_MouseLeave" Content="❌"  FontSize="14"  VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+    </Grid>
+</Window>

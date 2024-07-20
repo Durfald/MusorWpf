@@ -1,0 +1,90 @@
+﻿<Window x:Class="MusorWpf.DeleteCodeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MusorWpf"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown"
+        Loaded="Window_Loaded"
+        ResizeMode="NoResize"
+        Title="MMM"  Height="100 px" Width="250 px">
+    <Window.Resources>
+        <Style x:Key="TextBoxStyle1" BasedOn="{x:Null}" TargetType="{x:Type TextBox}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border CornerRadius="2" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                            <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush>#181818</SolidColorBrush>
+        </Grid.Background>
+        <ComboBox Width="188 px"
+                      Height="29 px"
+                      VerticalAlignment="Top" 
+                      HorizontalAlignment="Center"
+                      x:Name="ComboBox_Product" 
+                      Style="{StaticResource CustomCombobox}" 
+                      Foreground="#717171" 
+                      Margin="0,25,0,0"
+                      FontSize="14">
+            <ComboBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ComboBoxItem}">
+                    <Setter Property="Height" Value="23 px" />
+                </Style>
+            </ComboBox.ItemContainerStyle>
+        </ComboBox>
+        <Border x:Name="AddBorder" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10"  BorderThickness="1" Height="27 px" Width="78 px" BorderBrush="#454545" Background="#1c1c1c" CornerRadius="5">
+            <Button Margin="1" x:Name="Add" PreviewMouseLeftButtonDown="Add_PreviewMouseLeftButtonDown" Click="Add_Click" PreviewMouseLeftButtonUp="Add_PreviewMouseLeftButtonUp" MouseLeave="Add_MouseLeave" MouseEnter="Add_MouseEnter" Background="Transparent" BorderBrush="#1c1c1c" FontSize="14" Content="Delete" Foreground="#717171">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Border>
+        <Button x:Name="Close_window_button" Click="Close_window_button_Click" Background="Transparent" Foreground="#717171" BorderBrush="Transparent" MouseEnter="Close_window_button_MouseEnter" MouseLeave="Close_window_button_MouseLeave" Content="❌"  FontSize="14"  VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+    </Grid>
+    
+</Window>

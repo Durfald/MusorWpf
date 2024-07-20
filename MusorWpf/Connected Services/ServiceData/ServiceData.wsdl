@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="ServiceData" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:8312/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8312/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8312/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WcfService" />
+      <xsd:import schemaLocation="http://localhost:8312/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:8312/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/WCFService2" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServiceData_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IServiceData_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceData_GetCodes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCodes" />
+  </wsdl:message>
+  <wsdl:message name="IServiceData_GetCodes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCodesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceData_DeleteUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUser" />
+  </wsdl:message>
+  <wsdl:message name="IServiceData_DeleteUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceData_SendNickname_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendNickname" />
+  </wsdl:message>
+  <wsdl:message name="IServiceData_SendNickname_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendNicknameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceData_GetListNickname_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetListNickname" />
+  </wsdl:message>
+  <wsdl:message name="IServiceData_GetListNickname_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetListNicknameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceData_CreateHelperAcc_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateHelperAcc" />
+  </wsdl:message>
+  <wsdl:message name="IServiceData_CreateHelperAcc_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateHelperAccResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceData_ChangeBalance_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeBalance" />
+  </wsdl:message>
+  <wsdl:message name="IServiceData_ChangeBalance_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeBalanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceData_GetBalance_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBalance" />
+  </wsdl:message>
+  <wsdl:message name="IServiceData_GetBalance_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBalanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceData_AddCodetoHelper_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddCodetoHelper" />
+  </wsdl:message>
+  <wsdl:message name="IServiceData_AddCodetoHelper_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddCodetoHelperResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceData_GetDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDate" />
+  </wsdl:message>
+  <wsdl:message name="IServiceData_GetDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceData_GetHelpers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHelpers" />
+  </wsdl:message>
+  <wsdl:message name="IServiceData_GetHelpers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHelpersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceData_DeleteHelperAcc_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteHelperAcc" />
+  </wsdl:message>
+  <wsdl:message name="IServiceData_DeleteHelperAcc_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteHelperAccResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceData_RemoveCodeHelper_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveCodeHelper" />
+  </wsdl:message>
+  <wsdl:message name="IServiceData_RemoveCodeHelper_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveCodeHelperResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServiceData">
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceData/Login" message="tns:IServiceData_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceData/LoginResponse" message="tns:IServiceData_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCodes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceData/GetCodes" message="tns:IServiceData_GetCodes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceData/GetCodesResponse" message="tns:IServiceData_GetCodes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceData/DeleteUser" message="tns:IServiceData_DeleteUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceData/DeleteUserResponse" message="tns:IServiceData_DeleteUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendNickname">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceData/SendNickname" message="tns:IServiceData_SendNickname_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceData/SendNicknameResponse" message="tns:IServiceData_SendNickname_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListNickname">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceData/GetListNickname" message="tns:IServiceData_GetListNickname_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceData/GetListNicknameResponse" message="tns:IServiceData_GetListNickname_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateHelperAcc">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceData/CreateHelperAcc" message="tns:IServiceData_CreateHelperAcc_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceData/CreateHelperAccResponse" message="tns:IServiceData_CreateHelperAcc_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeBalance">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceData/ChangeBalance" message="tns:IServiceData_ChangeBalance_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceData/ChangeBalanceResponse" message="tns:IServiceData_ChangeBalance_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBalance">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceData/GetBalance" message="tns:IServiceData_GetBalance_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceData/GetBalanceResponse" message="tns:IServiceData_GetBalance_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCodetoHelper">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceData/AddCodetoHelper" message="tns:IServiceData_AddCodetoHelper_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceData/AddCodetoHelperResponse" message="tns:IServiceData_AddCodetoHelper_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceData/GetDate" message="tns:IServiceData_GetDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceData/GetDateResponse" message="tns:IServiceData_GetDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHelpers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceData/GetHelpers" message="tns:IServiceData_GetHelpers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceData/GetHelpersResponse" message="tns:IServiceData_GetHelpers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteHelperAcc">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceData/DeleteHelperAcc" message="tns:IServiceData_DeleteHelperAcc_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceData/DeleteHelperAccResponse" message="tns:IServiceData_DeleteHelperAcc_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveCodeHelper">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceData/RemoveCodeHelper" message="tns:IServiceData_RemoveCodeHelper_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceData/RemoveCodeHelperResponse" message="tns:IServiceData_RemoveCodeHelper_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IServiceData" type="tns:IServiceData">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/IServiceData/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCodes">
+      <soap:operation soapAction="http://tempuri.org/IServiceData/GetCodes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap:operation soapAction="http://tempuri.org/IServiceData/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendNickname">
+      <soap:operation soapAction="http://tempuri.org/IServiceData/SendNickname" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListNickname">
+      <soap:operation soapAction="http://tempuri.org/IServiceData/GetListNickname" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateHelperAcc">
+      <soap:operation soapAction="http://tempuri.org/IServiceData/CreateHelperAcc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeBalance">
+      <soap:operation soapAction="http://tempuri.org/IServiceData/ChangeBalance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBalance">
+      <soap:operation soapAction="http://tempuri.org/IServiceData/GetBalance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCodetoHelper">
+      <soap:operation soapAction="http://tempuri.org/IServiceData/AddCodetoHelper" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDate">
+      <soap:operation soapAction="http://tempuri.org/IServiceData/GetDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHelpers">
+      <soap:operation soapAction="http://tempuri.org/IServiceData/GetHelpers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteHelperAcc">
+      <soap:operation soapAction="http://tempuri.org/IServiceData/DeleteHelperAcc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveCodeHelper">
+      <soap:operation soapAction="http://tempuri.org/IServiceData/RemoveCodeHelper" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceData">
+    <wsdl:port name="BasicHttpBinding_IServiceData" binding="tns:BasicHttpBinding_IServiceData">
+      <soap:address location="http://localhost:8312/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
